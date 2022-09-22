@@ -9,6 +9,7 @@ import "./App.css";
 
 const App = () => {
   //useSTATE
+  const [walletAddress, setWalletAddress] = useState(null);
 
   //TOASTS
 
@@ -26,6 +27,7 @@ const App = () => {
           "Connected with Public Key:",
           response.publicKey.toString()
          );
+         setWalletAddress(response.publicKey.toString());
         }
       } else {
         alert ('To sign in, download a Phantom Wallet 👻 at https://phantom.app');
@@ -35,7 +37,15 @@ const App = () => {
     }
   };
 
-  const connectWallet = async () => {};
+  const connectWallet = async () => {
+    const { solana } = window;
+
+    if (solana) {
+      const response = await solana.connect();
+      console.log("Connected with Public Key:", response.publicKey.toString());
+      setWalletAddress(response.publicKey.toString());
+    }
+  };
 
   const renderNotConnectedContainer = () => (
     <div className="container">
@@ -64,7 +74,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <div className="container">
+      <div className={walletAddress ? "authed-container" : "container"}>
         <Toaster
           toastOptions={{
             className: "",
@@ -76,7 +86,9 @@ const App = () => {
             },
           }}
         />
-        <div className="header-container">{renderNotConnectedContainer()}</div>
+        <div className="header-container">
+          {!walletAddress && renderNotConnectedContainer()}
+        </div>
       </div>
     </div>
   );
