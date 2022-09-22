@@ -13,6 +13,21 @@ const App = () => {
   //TOASTS
 
   //ACTIONS
+  const checkIfWalletIsConnected = async () => {
+    try {
+      const { solana } = window;
+
+      if (solana) {
+        if (solana.isPhantom) {
+          console.log('Phantom wallet found!');
+        }
+      } else {
+        alert ('To sign in, download a Phantom Wallet 👻 at https://phantom.app');
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
   const renderNotConnectedContainer = () => (
     <div className="container">
       <p className="header">Scene Portal</p>
