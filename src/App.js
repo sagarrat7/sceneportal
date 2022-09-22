@@ -20,6 +20,12 @@ const App = () => {
       if (solana) {
         if (solana.isPhantom) {
           console.log('Phantom wallet found!');
+
+          const response = await solana.connect({ onlyIfTrusted: true });
+          console.log(
+          "Connected with Public Key:",
+          response.publicKey.toString()
+         );
         }
       } else {
         alert ('To sign in, download a Phantom Wallet 👻 at https://phantom.app');
