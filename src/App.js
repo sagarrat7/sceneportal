@@ -38,6 +38,14 @@ const App = () => {
   );
 
   //useEFFECTS
+  useEffect(() => {
+    const onLoad = async () => {
+      await checkIfWalletIsConnected();
+    };
+    window.addEventListener('load', onLoad);
+    return () => window.removeEventListener('load', onLoad);
+  }, []);
+
 
   return (
     <div className="App">
