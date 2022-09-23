@@ -10,6 +10,7 @@ import "./App.css";
 const App = () => {
   //useSTATE
   const [walletAddress, setWalletAddress] = useState(null);
+  const [inputValue, setInputValue] = useState('');
 
   //TOASTS
 
@@ -46,6 +47,50 @@ const App = () => {
       setWalletAddress(response.publicKey.toString());
     }
   };
+
+  const disconnectWallet = () => {
+    console.log("Wallet Disconnected");
+    setWalletAddress(null);
+  };
+
+  const sendGif = async () => {
+    if (inputValue.length > 0) {
+      console.log('Gif link:', inputValue);
+    } else {
+      console.log('Empty input. Try again.');
+    }
+  }; 
+
+  const onInputChange = (event) => {
+    const { value } = event.target;
+    setInputValue(value);
+  }; 
+
+  const renderConnectedContainer = () => (
+    <div className="connected-container">
+      <p className="connected-header">SCENE PORTAL</p>
+      <button className="cta-button disconnect-wallet-button" onClick={disconnectWallet}>
+        SIGN OUT
+      </button>
+      <form
+        className="form"
+        onSubmit={(event) => {
+          event.preventDefault();
+          sendGif();
+        }}
+      >
+        <input
+          type="text"
+          placeholder="post your favorite film/tv scene"
+          value={inputValue}
+          onChange={onInputChange}
+        />
+        <button type="submit" className="cta-button submit-gif-button">
+          Submit
+        </button>
+      </form>
+    </div>
+  );
 
   const renderNotConnectedContainer = () => (
     <div className="container">
@@ -88,6 +133,7 @@ const App = () => {
         />
         <div className="header-container">
           {!walletAddress && renderNotConnectedContainer()}
+          {walletAddress && renderConnectedContainer()}
         </div>
       </div>
     </div>
