@@ -19,6 +19,12 @@ const App = () => {
   const [gifList, setGifList] = useState([]);
 
   //TOASTS
+  const showPhantomToast = () =>
+    toast("To sign in, download a Phantom Wallet 👻 at https://phantom.app");
+  const showConnectedWalletToast = () => toast.success("You're signed in!");
+  const showDisconnectedWalletToast = () => toast.success("You've signed out!");
+  const showGifSentToast = () => toast.success("GIF Sent!");
+
 
   //ACTIONS
   const checkIfWalletIsConnected = async () => {
@@ -37,7 +43,7 @@ const App = () => {
          setWalletAddress(response.publicKey.toString());
         }
       } else {
-        alert ('To sign in, download a Phantom Wallet 👻 at https://phantom.app');
+        showPhantomToast();
       }
     } catch (error) {
       console.error(error);
@@ -51,12 +57,14 @@ const App = () => {
       const response = await solana.connect();
       console.log("Connected with Public Key:", response.publicKey.toString());
       setWalletAddress(response.publicKey.toString());
+      showConnectedWalletToast();
     }
   };
 
   const disconnectWallet = () => {
     console.log("Wallet Disconnected");
     setWalletAddress(null);
+    showDisconnectedWalletToast();
   };
 
   const sendGif = async () => {
@@ -64,11 +72,12 @@ const App = () => {
       console.log('Gif link:', inputValue);
       setGifList([...gifList, inputValue]);
       setInputValue('');
+      showGifSentToast();
     } else {
       console.log('Empty input. Try again.');
     }
   };
-
+  
   const onInputChange = (event) => {
     const { value } = event.target;
     setInputValue(value);
