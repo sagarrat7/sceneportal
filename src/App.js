@@ -6,11 +6,17 @@ import toast, { Toaster } from "react-hot-toast";
 import "./App.css";
 
 //CONSTANTS
+const TEST_GIFS = [
+	'https://media.giphy.com/media/35LCBkf6buF9AuzOL7/giphy.gif',
+	'https://media.giphy.com/media/pxuSx9i61E40xaAFyF/giphy.gif',
+	'https://media.giphy.com/media/26gspNQegsL4F1Sqk/giphy.gif'
+]
 
 const App = () => {
   //useSTATE
   const [walletAddress, setWalletAddress] = useState(null);
   const [inputValue, setInputValue] = useState('');
+  const [gifList, setGifList] = useState([]);
 
   //TOASTS
 
@@ -56,10 +62,12 @@ const App = () => {
   const sendGif = async () => {
     if (inputValue.length > 0) {
       console.log('Gif link:', inputValue);
+      setGifList([...gifList, inputValue]);
+      setInputValue('');
     } else {
       console.log('Empty input. Try again.');
     }
-  }; 
+  };
 
   const onInputChange = (event) => {
     const { value } = event.target;
@@ -79,6 +87,13 @@ const App = () => {
           sendGif();
         }}
       >
+        <div className="gif-grid">
+        {gifList.map((gif) => (
+          <div className="gif-item" key={gif}>
+            <img className="gif-image" src={gif} alt={gif} />
+          </div>
+        ))}
+        </div>
         <input
           type="text"
           placeholder="post your favorite film/tv scene"
@@ -116,6 +131,15 @@ const App = () => {
     return () => window.removeEventListener('load', onLoad);
   }, []);
 
+  useEffect(() => {
+    if (walletAddress) {
+      console.log("Fetching GIF list...");
+
+      // Call Solana program here.
+
+      setGifList(TEST_GIFS);
+    }
+  }, [walletAddress]);
 
   return (
     <div className="App">
