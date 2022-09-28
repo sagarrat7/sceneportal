@@ -12,7 +12,7 @@ const { SystemProgram, Keypair } = web3;
 const arr = Object.values(kp._keypair.secretKey);
 const secret = new Uint8Array(arr);
 const baseAccount = web3.Keypair.fromSecretKey(secret);
-const programID = new PublicKey("GPoC1vxA1ZYMDADGdt6qWW6jxtrQphfX4JziaCYdoFkA");
+const programID = new PublicKey("HM5me32yN1AabfgnbpaGr1WTiEPQ8jNR5dDDTkN9974Z");
 const network = clusterApiUrl("devnet");
 const opts = {
   preflightCommitment: "processed",

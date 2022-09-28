@@ -1,6 +1,6 @@
 {
   "version": "0.1.0",
-  "name": "solanagrid",
+  "name": "solanaproject",
   "instructions": [
     {
       "name": "startStuffOff",
@@ -86,6 +86,6 @@
     }
   ],
   "metadata": {
-    "address": "GPoC1vxA1ZYMDADGdt6qWW6jxtrQphfX4JziaCYdoFkA"
+    "address": "HM5me32yN1AabfgnbpaGr1WTiEPQ8jNR5dDDTkN9974Z"
   }
 }
