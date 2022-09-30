@@ -4,6 +4,7 @@ import { Connection, PublicKey, clusterApiUrl } from "@solana/web3.js";
 import { Program, Provider, web3 } from "@project-serum/anchor";
 import toast, { Toaster } from "react-hot-toast";
 import "./App.css";
+import './style2.sass';
 import idl from "./idl.json";
 import kp from "./keypair.json";
 
@@ -169,11 +170,30 @@ const App = () => {
       >
         SIGN IN
       </button>
-      <p className="header">Scene Portal</p>
-      <p className="sub-header">Your favorite scenes, on the blockchain</p>
-      <div className="moon" />
-      <div className="kiki" />
+      <div class="log">
+    <span id="xPos"></span> / <span id="yPos"></span><br/>
+    <span id="random1"></span> / <span id="random2"></span>  / <span id="random3"></span>
+</div>
+<div class="global-container">
+    <div class="scene intro">
+        <div class="stars"></div>
+        <div class="stars stars-2"></div>
+        <div class="logo-container flex flex-center">
+            <div class="logo">
+                <div class="text">
+                    <div class="line line-1">Vapor</div>
+                    <div class="line line-2">Space&nbsp;</div>
+                    <div class="line line-3">enter</div>
+                </div>
+            </div>
+        </div>
     </div>
+</div>
+
+<div class="noise-white screen-fixed"></div>
+<div class="noise-black screen-fixed"></div>
+<div class="screen-pixels screen-fixed"></div>  
+</div>
   );
 
   const renderConnectedContainer = () => {
@@ -278,5 +298,6 @@ const App = () => {
     </div>
   );
 };
+
 
 export default App;

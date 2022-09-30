@@ -1,0 +1,402 @@
+// Components / animations
+$log: false
+$grid: true
+$stars: true
+$noise: true
+
+// Grid
+$phone: 768px
+$tablet: 991px
+
+// Fonts
+$font-family-serif: 'Mr Dafoe', cursive
+$font-family-sans-serif: 'Londrina Solid', sans-serif
+$font-family-sans-serif-outline: 'Londrina Outline', sans-serif
+$font-family-base: 'Press Start 2P', cursive
+
+// Colors
+$main-background: rgb(20, 20, 20)
+$blue: rgb(30, 10, 170)
+$pink: rgb(240, 0, 190)
+$grid-color: $blue
+
+$grid-transformation: matrix3d(1, 0, 0.00, 0, 0.00, 1, 0.00, -0.012, 0, 0, 1, 0, 0, 0, 0, 1)
+$stars-numbers: 80
+
+// Functions
+@function stars-box-shadow($number)
+  $value: '#{random(100)-50}vw #{random(100)-50}vh white'
+
+  @for $i from 1 through $number
+    $value: '#{$value}, #{random(100)-50}vw #{random(100)-50}vh white'
+
+  @return unquote($value)
+  
+
+@function noise-white-colors()
+  $colors: if(random(100) > 50, #fff, transparent)
+  
+  @for $j from 2 through 6
+    $color: if(random(100) > 50, #fff, transparent)
+    $colors: '#{$colors}, #{$color}'
+
+  @return unquote($colors)
+
+
+@function noise-white-background($number)
+  $value: 'linear-gradient(90deg, transparent, #{noise-white-colors()}, transparent) #{random(100)}% #{random(100)}% no-repeat'
+
+  @for $i from 2 through $number
+    $value: '#{$value}, linear-gradient(90deg, transparent, #{noise-white-colors()}, transparent) #{random(100)}% #{random(100)}% no-repeat'
+
+  @return unquote($value)
+  
+
+@function noise-white-background-size($number)
+  $value: '#{random(50)}% 1px'
+
+  @for $i from 2 through $number
+    $value: '#{$value}, #{random(50)}% 1px'
+
+  @return unquote($value)
+  
+
+// Mixins
+@mixin text-neon($color: $pink)
+  text-shadow: 0 0 5px $color, 0 0 5px $color, 0 0 15px $color, 0 0 15px $color, 0 0 15px $color, 0 0 20px $color, -4px 4px 3px rgba(0, 0, 0, .5)
+ 
+
+// Keyframes
+@keyframes saturate
+  0%, 80%, 100%
+    filter: saturate(1)
+  90%
+    filter: saturate(1.5)
+
+@keyframes glitch-red-blue-layers
+  0%, 100%
+    filter: drop-shadow(0)
+  93%
+    filter: drop-shadow(-10px 0 0 transparentize($blue, .5))
+  94%
+    filter: drop-shadow(10px 0 0 transparentize($pink, .8))
+  
+@keyframes grid-appear-animation
+  0%
+    opacity: 0
+    height: 0
+    transform: initial
+  100%
+    opacity: 1
+    transform: $grid-transformation
+  
+@keyframes grid-background-animation
+  from
+    background-position: 0 0
+  to
+    background-position: 0 20px
+    
+@keyframes stars-animation
+  from
+    opacity: .3
+    transform: scale(.3)
+  80%
+    opacity: 1
+  to
+    opacity: 0
+    transform: scale(10)
+    
+@keyframes logo-appear-animation
+  from
+    transform: scale(0) translateZ(0)
+  60%
+    transform: scale(1.5) translateZ(0)
+  to
+    transform: scale(1) translateZ(4vw)
+
+@keyframes logo-background-animation
+  0%
+    transform: rotateY(0)
+  100%
+    transform: rotateY(360 * 2deg)
+
+@keyframes logo-text-animation
+  0%, 90%
+    opacity: 0
+  100%
+    opacity: 1
+  
+@keyframes underline-animation
+  100%
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%)
+
+@keyframes noise-white-background-animation
+  0%
+    display: block
+    background: noise-white-background(6)
+    background-size: noise-white-background-size(6)
+    animation-timing-function: steps(1)
+  2%
+    display: none
+    background: 0
+    background-size: 0
+    animation-timing-function: steps(2)
+  19%
+    display: none
+  20%
+    display: block
+    background: noise-white-background(2)
+    background-size: noise-white-background-size(2)
+    animation-timing-function: steps(4)
+  22%
+    display: none
+    background: 0
+    background-size: 0
+    animation-timing-function: steps(5)
+  100%
+    display: none
+
+@keyframes noise-black-animation
+  0%
+    top: 0
+  25%
+    top: 100%
+    display: none
+  100%
+    top: 100%
+    display: none
+  
+
+// Debug
+.log
+  position: fixed
+  top: 0
+  font-family: monospace
+  z-index: 1000
+  @if $log == false
+    display: none
+    
+body
+  --mouseX: 0
+  --mouseY: 0
+  --random1: 0
+  --random2: 0
+  position: relative
+  background: $main-background
+  color: white
+  transition: all .2s linear
+  animation: saturate calc(var(--random3) * 5s) linear infinite, glitch-red-blue-layers calc(var(--random3) * 20s) linear infinite
+
+.screen-fixed
+  position: fixed
+  top: 0
+  right: 0
+  bottom: 0
+  left: 0
+
+.screen-pixels
+  background: repeating-linear-gradient(rgba(0, 0, 0, .2), rgba(0, 0, 0, .2) 2px, transparent 2px, transparent 4px)
+  z-index: 100
+  pointer-events: none
+  
+.noise-white
+  opacity: .3
+  z-index: 50
+  animation: noise-white-background-animation 4s linear infinite
+  pointer-events:  none
+  @if $noise == false
+    display: none
+
+.noise-black
+  z-index: 50
+  pointer-events: none
+  
+  &::before
+    display: block
+    content: ''
+    position: absolute
+    top: 0
+    width: 100%
+    height: 2px
+    background: $main-background
+    animation: noise-black-animation 10s linear infinite
+    opacity: calc(var(--random2))
+    @if $noise == false
+      display: none
+
+.global-container
+  overflow: hidden
+
+.scene
+  position: relative
+  width: 100%
+  min-height: 100vh
+
+.flex
+  position: relative
+  display: flex
+  
+  &-center
+    justify-content: center
+    align-content: center
+    align-items: center  
+  
+.intro
+  transition: all .2s linear
+  
+  // Grid
+  &::before
+    content: ''
+    display: block
+    width: 200vw
+    height: 50vh
+    position: absolute
+    top: 25%
+    left: -50%
+    z-index: -1
+    background-image: repeating-linear-gradient(to top, $grid-color, $grid-color 1px, transparent 1px, transparent 10px), repeating-linear-gradient(90deg, $grid-color, $grid-color 3px, transparent 3px, transparent 100px)
+    animation: grid-appear-animation 4s cubic-bezier(0, .5, .5, 1), grid-background-animation 1s linear infinite 
+    transform: $grid-transformation
+    -webkit-mask-image: linear-gradient(to bottom, transparent 30%, black 60%)
+    @if $grid == false
+      display: none
+  
+.stars
+  @if $stars == false
+    display: none
+    
+  &::before,
+  &::after
+    content: ''
+    display: block
+    width: 1px
+    height: 1px
+    position: absolute
+    top: 50%
+    left: 50%
+    opacity: 0
+    box-shadow: stars-box-shadow($stars-numbers)
+    animation: stars-animation 4s cubic-bezier(.8, 0, 1, .8) infinite
+
+  &::after
+    box-shadow: stars-box-shadow($stars-numbers)
+    animation-delay: 1s
+
+.stars-2
+  &::before
+    box-shadow: stars-box-shadow($stars-numbers)
+    animation-delay: 2s
+  &::after
+    box-shadow: stars-box-shadow($stars-numbers)
+    animation-delay: 3s
+  
+.logo-container
+  min-height: 100vh
+  perspective: 20vw
+  z-index: 1
+  
+.logo
+  transform: translateZ(4vw)
+  transform-style: preserve-3d
+  animation: logo-appear-animation 3s cubic-bezier(.65, 0, .35, 1)
+  
+  @media (min-width: $tablet)
+    transform: rotateX(calc(var(--mouseY) * 2deg)) rotateY(calc(var(--mouseX) * 2deg)) translateZ(4vw)
+
+  .text
+    position: relative
+    color: white
+    font-size: 7vw
+    font-style: italic
+    line-height: 1em
+    transform: rotate(-5deg)
+    transform-style: preserve-3d
+    
+    @media (min-width: $tablet)
+      font-size: 12vh
+
+    // Logo background
+    &::before
+      content: ''
+      display: block
+      background: $blue
+      background: radial-gradient(ellipse at 10% 10%, $pink 0%, $blue 80%, $blue 100%)
+      position: absolute
+      top: -10%
+      right: -30%
+      bottom: -10%
+      left: -20%
+      clip-path: polygon(50% 0, 10% 40%, 100% 100%)
+      z-index: -1
+      animation: logo-background-animation 3s cubic-bezier(.55, 0, .35, 1)
+    
+    .line
+      animation: logo-text-animation linear
+
+    .line-1, .line-2
+      font-size: 1.5em
+      text-transform: uppercase
+
+    .line-1
+      position: relative
+      right: -5%
+      font-family: $font-family-sans-serif-outline
+      @include text-neon
+      transform: translateZ(1vw)
+      animation-duration: 3s
+
+    .line-2
+      position: relative
+      right: -10%
+      padding: 2% 4% 2% 0%
+      font-family: $font-family-sans-serif
+      background: linear-gradient(5deg, white 10%, $blue 30%, $main-background 50%, white 51%, $blue 75%, $main-background 90%)
+      background-clip: text
+      -webkit-background-clip: text
+      -webkit-text-fill-color: transparent
+      transform: translateZ(3vw)
+      animation-duration: 3.5s
+      
+      @media (min-width: $tablet)
+        -webkit-text-fill-color: rgba(255, 255, 255, calc((var(--mouseX) * var(--mouseY)) / 50))
+        text-shadow: 0 0 .5em rgba(255, 255, 255, calc((var(--mouseX) * var(--mouseY)) / 50))
+        background: linear-gradient(5deg, white 10%, $blue 30%, $main-background calc(50% + (var(--mouseY) * -2%)), white calc(51% + (var(--mouseY) * -2%)), $blue 75%, $main-background 90%)
+        background-clip: text
+        -webkit-background-clip: text
+      
+      .firefox &
+        background: initial
+        background-clip: initial
+        -webkit-text-fill-color: initial
+        color: white
+        text-shadow: initial
+
+    .line-3
+      position: relative
+      top: -10px
+      right: -40%
+      display: inline-block
+      font-family: $font-family-serif
+      color: $pink
+      z-index: -1
+      transform: translateZ(2vw)
+      animation-duration: 4s
+
+      &::first-letter
+        font-size: 1.2em
+
+      &::before
+        display: block
+        content: ''
+        position: absolute
+        left: 50%
+        bottom: 0
+        width: 50%
+        height: .03em
+        background: $pink
+        border-radius: 50%
+        transform: translateX(-50%)
+        clip-path: polygon(0 0, 0 0, 0 100%, 0 100%)
+        animation: underline-animation 1s ease 4s
+        animation-fill-mode: forwards
+
