@@ -22,6 +22,7 @@ const opts = {
 };
 
 const audio = new Audio(url);
+var isPlaying = false;
 
 
 const App = () => {
@@ -188,7 +189,7 @@ const App = () => {
         </div>
     </div>
     <div className="play-button-outer" >
-  <div className="play-button" onClick={play}></div>
+  <div className="play-button" onClick={togglePlay}></div>
   </div>
 </div>
 
@@ -198,7 +199,7 @@ const App = () => {
 </div>
   );
 
-  const renderConnectedContainer = () => {
+  function renderConnectedContainer() {
     if (gifList === null) {
       return (
         <div className="connected-container">
@@ -279,9 +280,20 @@ const App = () => {
     }
   }, [walletAddress]);
 
-   const play = () => {
-    audio.play();
-  }
+ 
+  function togglePlay() {
+    if (isPlaying) {
+      audio.pause()
+    } else {
+      audio.play();
+    }
+  };
+  audio.onplaying = function() {
+    isPlaying = true;
+  };
+  audio.onpause = function() {
+    isPlaying = false;
+  };
 
   return (
     <div className="App">

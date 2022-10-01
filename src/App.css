@@ -97,10 +97,6 @@
   opacity: .50; 
 }
 
-.play-button-outer:hover {
-  background-color: rgba(0, 0, 0, .5);
-}
-
 .play-button-outer:hover .play-button {
   opacity: 1;
 }
