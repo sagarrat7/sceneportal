@@ -3,22 +3,8 @@
 
 .App {
   height: 100vh;
-  /*background-image: url(./assets/lofi-large.gif);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-color: #250352;*/
   overflow: auto;
   text-align: center;
-}
-
-
-.container {
-  height: 100%;
-  display: flex;
-  position: relative;
-  flex-direction: column;
-  justify-content: center;
-  padding: 0 10px 0 30px;
 }
 
 .authed-container {
