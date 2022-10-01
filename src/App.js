@@ -7,6 +7,7 @@ import "./App.css";
 import './style2.sass';
 import idl from "./idl.json";
 import kp from "./keypair.json";
+import Sound from 'react-sound';
 
 //CONSTANTS
 const { SystemProgram, Keypair } = web3;
@@ -164,35 +165,29 @@ const App = () => {
 
   const renderNotConnectedContainer = () => (
     <div className="container">
-      <button
-        className="cta-button connect-wallet-button"
-        onClick={connectWallet}
-      >
-        SIGN IN
-      </button>
-      <div class="log">
+    <div className="log">
     <span id="xPos"></span> / <span id="yPos"></span><br/>
     <span id="random1"></span> / <span id="random2"></span>  / <span id="random3"></span>
 </div>
-<div class="global-container">
-    <div class="scene intro">
-        <div class="stars"></div>
-        <div class="stars stars-2"></div>
-        <div class="logo-container flex flex-center">
-            <div class="logo">
-                <div class="text">
-                    <div class="line line-1">Vapor</div>
-                    <div class="line line-2">Space&nbsp;</div>
-                    <div class="line line-3">enter</div>
+<div className="global-container">
+    <div className="scene intro">
+        <div className="stars"></div>
+        <div className="stars stars-2"></div>
+        <div className="logo-container flex flex-center">
+            <div className="logo">
+                <div className="text">
+                    <div className="line line-1">Vapor</div>
+                    <div className="line line-2">Space&nbsp;</div>
+                    <div className="line line-3" onClick={connectWallet}>enter</div>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<div class="noise-white screen-fixed"></div>
-<div class="noise-black screen-fixed"></div>
-<div class="screen-pixels screen-fixed"></div>  
+<div className="noise-white screen-fixed"></div>
+<div className="noise-black screen-fixed"></div>
+<div className="screen-pixels screen-fixed"></div>  
 </div>
   );
 
@@ -211,7 +206,7 @@ const App = () => {
     } else {
       return (
         <div className="connected-container">
-          <p className="connected-header">SCENE PORTAL</p>
+          <p class="connected-header logo text_anaglyphic">Vaporspace</p>
           <button
             className="cta-button disconnect-wallet-button"
             onClick={disconnectWallet}

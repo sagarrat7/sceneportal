@@ -44,12 +44,13 @@
 }
 
 .connected-header {
-  font-family: "Inconsolata", cursive;
-  color: white;
+  font-family: "Inconsolata";
+  color: #f000be;
+  text-shadow: -4px -4px 0 #77caff;
   position: relative;
   left: -530px;
   top: 12px;
-  font-size: 1.6rem;
+  font-size: 2.5rem;
 }
 
 .cta-button {
@@ -65,17 +66,12 @@
 }
 
 .connect-wallet-button {
-  background-color: #360477;
-  background-size: 200% 200%;
-  font-family: "Inconsolata", cursive;
-  position: relative;
-  width: 150px;
-  top: -500px;
-  left: 1100px;
+  background:none;
+  border:none;
 }
 
 .disconnect-wallet-button {
-  background-color: #360477;
+  background-color: #f000be;
   position: relative;
   font-family: "Inconsolata", cursive;
   font-size: 0.9rem;
@@ -93,7 +89,7 @@
 }
 
 .submit-gif-button {
-  background-color: #360477;
+  background-color: #f000be;
   background-size: 200% 200%;
   margin-left: 10px;
   font-family: "Inconsolata", cursive;
@@ -117,7 +113,7 @@
   position: relative;
   justify-self: center;
   align-self: center;
-  background-color: #360477;
+  background-color: #f000be;
   padding: 15px;
   border-radius: 15px;
 }
@@ -155,7 +151,7 @@
   column-gap: 8px;
   grid-column-gap: 8px;
   padding: 6px 10px 8px 10px;
-  background-color: #360477;
+  background-color: #f000be;
   width: 150px;
   height: 20px;
   border-radius: 34px;
