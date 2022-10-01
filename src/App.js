@@ -7,7 +7,8 @@ import "./App.css";
 import './style2.sass';
 import idl from "./idl.json";
 import kp from "./keypair.json";
-import Sound from 'react-sound';
+import url from "./assets/RunningWild.mp3";
+
 
 //CONSTANTS
 const { SystemProgram, Keypair } = web3;
@@ -19,6 +20,9 @@ const network = clusterApiUrl("devnet");
 const opts = {
   preflightCommitment: "processed",
 };
+
+const audio = new Audio(url);
+
 
 const App = () => {
   //useSTATE
@@ -183,11 +187,14 @@ const App = () => {
             </div>
         </div>
     </div>
+    <div className="play-button-outer" >
+  <div className="play-button" onClick={play}></div>
+  </div>
 </div>
 
 <div className="noise-white screen-fixed"></div>
 <div className="noise-black screen-fixed"></div>
-<div className="screen-pixels screen-fixed"></div>  
+<div className="screen-pixels screen-fixed"></div> 
 </div>
   );
 
@@ -271,6 +278,10 @@ const App = () => {
       getGifList();
     }
   }, [walletAddress]);
+
+   const play = () => {
+    audio.play();
+  }
 
   return (
     <div className="App">
