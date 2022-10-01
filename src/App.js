@@ -14,7 +14,7 @@ const { SystemProgram, Keypair } = web3;
 const arr = Object.values(kp._keypair.secretKey);
 const secret = new Uint8Array(arr);
 const baseAccount = web3.Keypair.fromSecretKey(secret);
-const programID = new PublicKey("HM5me32yN1AabfgnbpaGr1WTiEPQ8jNR5dDDTkN9974Z");
+const programID = new PublicKey("6nKzKeV6BkjpvtB5uyEGgbWgxnFKqX1n38J8NLG4o2CT");
 const network = clusterApiUrl("devnet");
 const opts = {
   preflightCommitment: "processed",
@@ -178,7 +178,7 @@ const App = () => {
                 <div className="text">
                     <div className="line line-1">Vapor</div>
                     <div className="line line-2">Space&nbsp;</div>
-                    <div className="line line-3" onClick={connectWallet}>enter</div>
+                    <div className="signin line line-3" onClick={connectWallet}>enter</div>
                 </div>
             </div>
         </div>
@@ -221,8 +221,9 @@ const App = () => {
             }}
           >
             <input
+              className="placeholder"
               type="text"
-              placeholder="post your favorite film/tv scene"
+              placeholder="post your favorite scene"
               value={inputValue}
               onChange={onInputChange}
             />

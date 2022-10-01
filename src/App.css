@@ -61,6 +61,8 @@
   padding-right: 40px;
   border-radius: 10px;
   cursor: pointer;
+  font-family: "Inconsolata";
+  font-weight: bold;
   font-size: 16px;
   color: white;
 }
@@ -73,11 +75,20 @@
 .disconnect-wallet-button {
   background-color: #f000be;
   position: relative;
-  font-family: "Inconsolata", cursive;
+  font-family: "Inconsolata";
   font-size: 0.9rem;
+  font-weight: bold;
   left: 500px;
   top: -60px;
   width: 250px;
+}
+
+.placeholder {
+  font-family: "Inconsolata";
+}
+
+.signin {
+  cursor:pointer;
 }
 
 .form {
@@ -92,8 +103,9 @@
   background-color: #f000be;
   background-size: 200% 200%;
   margin-left: 10px;
-  font-family: "Inconsolata", cursive;
+  font-family: "Inconsolata";
   font-size: 1rem;
+  font-weight: bold;
 }
 
 .gif-grid {
@@ -158,6 +170,8 @@
   margin-left: 30px;
   margin-top: -20px;
   color: #ffffff;
+  font-family: "Inconsolata";
+  font-weight: bold;
 }
 
 .phantom-image {
