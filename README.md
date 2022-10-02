@@ -1,6 +1,6 @@
 # Vaporspace
 
-Transport to a different dimension and **_immerse_** yourself in the vaporspace. Store and upload your favorite vaporwave scenes to the blockchain. 
+Teleport to a different dimension and **_immerse_** yourself in the vaporspace. Store and upload your favorite vaporwave scenes to the blockchain. 
 
 ## About
 
