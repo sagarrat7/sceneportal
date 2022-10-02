@@ -1,7 +1,12 @@
-# sceneportal -> vaporspace
+# vaporspace
 
 Transport to a different dimension and **_immerse_** yourself in the vaporspace. Store and upload your favorite vaporwave scenes to the blockchain. 
 
+## About
+
+> Vaporwave is both an aesthetic and genre of music that is meant to induce nostalgia, especially for the ’80s and early ’90s, and a longing for what we imagined the future would be like back in the 1980s. The driving theme behind vaporwave is that it makes you long for a future that never happened. Vaporwave music is often composed of samples of songs from the 1970s and 80s. - [Noa Ortiz](https://www.calibermag.net/blog/2021/3/1/the-inextricably-deep-world-of-vaporwave) 
+
+**Vaporspace** is inspired by the idea of a scene portal. If vaporwave aesthetic represents a collective conscience, then each gif or image is like a portal or a snapshot of this retrofuturistic past. Each gif or image is a “memory”. 
 
 
 
