@@ -15,7 +15,6 @@ Upload your favorite vaporwave scenes to the block chain
 git clone https://github.com/sagarrat7/sceneportal.git
 cd sceneportal 
 npm install
-
 ```
 
 ## Running the project
@@ -24,8 +23,7 @@ Run the following command to build the react application and serve it:
 
 ```
 npm start
-
 ```
 ## Acknoledgements 
 
-This project was developed during buildPr3tti's solana Blockchain camp.
+This project was developed during buildPr3tti's solana camp.
